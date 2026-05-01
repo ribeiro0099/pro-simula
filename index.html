@@ -1,379 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AprovacaoTotal — Plataforma de Estudos com IA</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-  :root {
-    --brand:       #1A56DB;
-    --brand-dark:  #1240A8;
-    --brand-light: #EBF1FF;
-    --accent:      #F59E0B;
-    --accent-light:#FEF3C7;
-    --success:     #059669;
-    --success-bg:  #ECFDF5;
-    --danger:      #DC2626;
-    --danger-bg:   #FEF2F2;
-
-    --bg:          #FFFFFF;
-    --bg-soft:     #F8F9FB;
-    --bg-card:     #FFFFFF;
-    --border:      #E5E7EB;
-    --border-strong:#D1D5DB;
-
-    --text-primary:  #111827;
-    --text-secondary:#374151;
-    --text-muted:    #6B7280;
-    --text-faint:    #9CA3AF;
-
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
-
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
-    --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
-    --shadow-lg: 0 12px 40px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.05);
-  }
-
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text-primary);
-    line-height: 1.6;
-  }
-
-  /* ===== NAV ===== */
-  header {
-    position: sticky; top:0; z-index:200;
-    background: rgba(255,255,255,.95);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(10px);
-  }
-  nav {
-    max-width: 1200px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 24px; height: 64px;
-  }
-  .logo {
-    font-family: 'Fraunces', serif;
-    font-weight: 900; font-size: 22px;
-    color: var(--brand);
-    text-decoration: none; letter-spacing: -0.5px;
-  }
-  .logo span { color: var(--text-primary); }
-  .nav-links { display: flex; align-items: center; gap: 32px; }
-  .nav-links a {
-    font-size: 14px; font-weight: 600;
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color .15s;
-  }
-  .nav-links a:hover { color: var(--brand); }
-  .nav-cta {
-    background: var(--brand); color: #fff !important;
-    padding: 9px 20px; border-radius: var(--radius-sm);
-    font-weight: 700 !important; font-size: 14px !important;
-    transition: background .15s !important;
-  }
-  .nav-cta:hover { background: var(--brand-dark) !important; color:#fff !important; }
-
-  /* ===== HERO ===== */
-  .hero {
-    max-width: 1200px; margin: 0 auto;
-    padding: 80px 24px 64px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--brand-light); color: var(--brand);
-    font-size: 12px; font-weight: 700;
-    padding: 5px 12px; border-radius: 100px;
-    margin-bottom: 20px; letter-spacing: .3px;
-  }
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(36px, 4vw, 54px);
-    font-weight: 900; line-height: 1.1;
-    letter-spacing: -1.5px;
-    color: var(--text-primary);
-    margin-bottom: 20px;
-  }
-  .hero h1 em { font-style: italic; color: var(--brand); }
-  .hero p {
-    font-size: 17px; color: var(--text-muted);
-    line-height: 1.7; margin-bottom: 36px; max-width: 440px;
-  }
-  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--brand); color: #fff;
-    padding: 13px 24px; border-radius: var(--radius-sm);
-    font-weight: 700; font-size: 15px;
-    text-decoration: none; border: none; cursor: pointer;
-    transition: all .2s; box-shadow: 0 2px 8px rgba(26,86,219,.3);
-  }
-  .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,86,219,.35); }
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: var(--text-secondary);
-    padding: 13px 24px; border-radius: var(--radius-sm);
-    font-weight: 600; font-size: 15px;
-    text-decoration: none; border: 1.5px solid var(--border-strong); cursor: pointer;
-    transition: all .2s;
-  }
-  .btn-ghost:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-light); }
-
-  /* Hero visual */
-  .hero-visual {
-    background: var(--bg-soft);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 28px;
-    box-shadow: var(--shadow-lg);
-  }
-  .mini-card {
-    background: #fff; border: 1px solid var(--border);
-    border-radius: var(--radius-md); padding: 16px 18px; margin-bottom: 12px;
-    box-shadow: var(--shadow-sm);
-    display: flex; align-items: flex-start; gap: 12px;
-  }
-  .mini-icon {
-    width: 36px; height: 36px; border-radius: var(--radius-sm);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 17px; flex-shrink: 0;
-  }
-  .mini-icon.blue  { background: var(--brand-light); }
-  .mini-icon.amber { background: var(--accent-light); }
-  .mini-icon.green { background: var(--success-bg); }
-  .mini-card-title { font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
-  .mini-card-sub   { font-size: 12px; color: var(--text-muted); }
-  .mini-score {
-    margin-left: auto; font-family: 'Fraunces', serif;
-    font-size: 22px; font-weight: 900; color: var(--brand);
-  }
-
-  /* ===== STATS ===== */
-  .stats {
-    background: var(--brand);
-    padding: 40px 24px;
-  }
-  .stats-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-    text-align: center;
-  }
-  .stat-num {
-    font-family: 'Fraunces', serif;
-    font-size: 38px; font-weight: 900; color: #fff; line-height: 1;
-  }
-  .stat-lbl { font-size: 13px; color: rgba(255,255,255,.75); margin-top: 6px; font-weight: 500; }
-
-  /* ===== FEATURES ===== */
-  .section { max-width: 1200px; margin: 0 auto; padding: 80px 24px; }
-  .section-label {
-    font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
-    color: var(--brand); text-transform: uppercase; margin-bottom: 12px;
-  }
-  .section-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(28px, 3vw, 42px); font-weight: 900;
-    letter-spacing: -1px; color: var(--text-primary);
-    margin-bottom: 16px;
-  }
-  .section-sub { font-size: 16px; color: var(--text-muted); max-width: 520px; line-height: 1.7; margin-bottom: 48px; }
-
-  .features-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  .feat-card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 28px;
-    box-shadow: var(--shadow-sm);
-    transition: all .25s; cursor: pointer; text-decoration: none; color: inherit;
-    display: flex; flex-direction: column;
-  }
-  .feat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--brand); }
-  .feat-card-icon {
-    width: 48px; height: 48px; border-radius: var(--radius-md);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; margin-bottom: 18px;
-  }
-  .feat-card h3 { font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
-  .feat-card p  { font-size: 14px; color: var(--text-muted); line-height: 1.65; flex: 1; }
-  .feat-link {
-    display: inline-flex; align-items: center; gap: 4px;
-    margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--brand);
-    text-decoration: none;
-  }
-
-  /* ===== MODULES STRIP ===== */
-  .modules-bg { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .module-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-  .module-pill {
-    background: #fff; border: 1px solid var(--border);
-    border-radius: var(--radius-md); padding: 16px 18px;
-    display: flex; align-items: center; gap: 12px;
-    font-size: 14px; font-weight: 600; color: var(--text-secondary);
-    box-shadow: var(--shadow-sm);
-  }
-  .module-pill span:first-child { font-size: 18px; }
-
-  /* ===== FOOTER ===== */
-  footer {
-    background: var(--text-primary); color: rgba(255,255,255,.6);
-    text-align: center; padding: 32px 24px;
-    font-size: 13px;
-  }
-  footer strong { color: #fff; }
-
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; gap: 40px; }
-    .hero-visual { display: none; }
-    .stats-inner { grid-template-columns: repeat(2,1fr); }
-    .nav-links { display: none; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Questões Pró</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-  <nav>
-    <a href="index.html" class="logo">Aprovação<span>Total</span></a>
-    <div class="nav-links">
-      <a href="simulado.html">Simulado</a>
-      <a href="redacao.html">Redação</a>
-      <a href="idiomas.html">Idiomas</a>
-      <a href="desempenho.html">Desempenho</a>
-      <a href="simulado.html" class="nav-cta">Começar agora →</a>
-    </div>
-  </nav>
-</header>
-
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <div class="hero-badge">✦ IA Generativa para Concursos</div>
-      <h1>Estude o que o <em>edital pede</em>, não o que o site tem.</h1>
-      <p>Simulados dinâmicos, correção de redação com nota 0–1000, professor de idiomas e mapeamento completo do seu desempenho — tudo criado em tempo real por inteligência artificial.</p>
-      <div class="hero-btns">
-        <a href="simulado.html" class="btn-primary">⚡ Gerar simulado agora</a>
-        <a href="redacao.html" class="btn-ghost">✍️ Corrigir redação</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="mini-card">
-        <div class="mini-icon blue">📝</div>
-        <div>
-          <div class="mini-card-title">Simulado Banco do Brasil · Cesgranrio</div>
-          <div class="mini-card-sub">Conhecimentos Bancários · Nível Médio</div>
+    <div id="app">
+        <!-- Banner de Estudos no Topo -->
+        <div class="estudos-banner">
+            <div class="banner-content">
+                <h2>FOCO NOS ESTUDOS</h2>
+                <p>Prepare-se para o TTI e Banco do Brasil com questões atualizadas.</p>
+            </div>
         </div>
-        <div class="mini-score">3/5</div>
-      </div>
-      <div class="mini-card">
-        <div class="mini-icon amber">✍️</div>
-        <div>
-          <div class="mini-card-title">Redação corrigida — Tema: Reforma tributária</div>
-          <div class="mini-card-sub">Dissertativa-argumentativa</div>
-        </div>
-        <div class="mini-score" style="color:var(--success)">840</div>
-      </div>
-      <div class="mini-card">
-        <div class="mini-icon green">🌐</div>
-        <div>
-          <div class="mini-card-title">Inglês · FGV · B2 — Phrasal Verbs</div>
-          <div class="mini-card-sub">3 questões geradas com IA</div>
-        </div>
-        <div class="mini-score" style="color:var(--accent)">2/3</div>
-      </div>
-      <div style="background:var(--brand-light);border-radius:var(--radius-md);padding:14px 16px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:20px;">📊</span>
-        <div>
-          <div style="font-size:13px;font-weight:700;color:var(--brand)">Desempenho geral: 72% de acertos</div>
-          <div style="font-size:12px;color:var(--brand);opacity:.7">Matemática Financeira precisa de atenção ↓</div>
-        </div>
-      </div>
+
+        <header>
+            <h1>Simulador Educacional</h1>
+            <div class="controles">
+                <select id="select-materia">
+                    <option value="">Carregando matérias...</option>
+                </select>
+                <button id="btn-iniciar">Iniciar Prática</button>
+            </div>
+        </header>
+
+        <main id="questoes-container">
+            <div class="placeholder">Selecione uma matéria para começar sua prática.</div>
+        </main>
+
+        <footer>
+            <button id="btn-conferir" class="hidden">Conferir Respostas</button>
+        </footer>
     </div>
-  </section>
 
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stats-inner">
-      <div><div class="stat-num">8+</div><div class="stat-lbl">Bancas suportadas</div></div>
-      <div><div class="stat-num">∞</div><div class="stat-lbl">Questões geradas por IA</div></div>
-      <div><div class="stat-num">12+</div><div class="stat-lbl">Idiomas disponíveis</div></div>
-      <div><div class="stat-num">0–1000</div><div class="stat-lbl">Escala de redação</div></div>
-    </div>
-  </div>
-
-  <!-- FEATURES -->
-  <section class="section">
-    <div class="section-label">O que você encontra aqui</div>
-    <h2 class="section-title">Tudo que você precisa para passar</h2>
-    <p class="section-sub">Cada módulo foi pensado para eliminar o tempo perdido buscando material — a IA cria, corrige e analisa por você.</p>
-    <div class="features-grid">
-      <a href="simulado.html" class="feat-card">
-        <div class="feat-card-icon" style="background:var(--brand-light)">📝</div>
-        <h3>Simulados Dinâmicos</h3>
-        <p>Questões inéditas no padrão FGV, Cesgranrio, Cebraspe e Vunesp para qualquer cargo — Banco do Brasil, Caixa, BNDES, INSS, prefeituras e TTI.</p>
-        <span class="feat-link">Gerar questões →</span>
-      </a>
-      <a href="redacao.html" class="feat-card">
-        <div class="feat-card-icon" style="background:var(--accent-light)">✍️</div>
-        <h3>Oficina de Redação IA</h3>
-        <p>Cole seu texto e receba nota de 0 a 1000 com análise detalhada das 5 competências, erros gramaticais e dicas práticas de melhoria.</p>
-        <span class="feat-link">Corrigir redação →</span>
-      </a>
-      <a href="idiomas.html" class="feat-card">
-        <div class="feat-card-icon" style="background:#ECFDF5">🌐</div>
-        <h3>Estudo de Idiomas</h3>
-        <p>Questões de inglês no padrão de concurso, professor de conversação com IA, tradutor inteligente e flashcards de vocabulário em 12 idiomas.</p>
-        <span class="feat-link">Estudar idiomas →</span>
-      </a>
-      <a href="desempenho.html" class="feat-card">
-        <div class="feat-card-icon" style="background:#FEF3C7">📊</div>
-        <h3>Mapa de Desempenho</h3>
-        <p>Histórico de acertos e erros por matéria, gráficos de evolução e análise personalizada pela IA apontando exatamente onde você perde pontos.</p>
-        <span class="feat-link">Ver meu desempenho →</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- MODULES -->
-  <div class="modules-bg">
-    <div class="section" style="padding-top:48px;padding-bottom:48px;">
-      <div class="section-label">Matérias e módulos</div>
-      <h2 class="section-title" style="margin-bottom:32px">Cobertura completa do edital</h2>
-      <div class="module-list">
-        <div class="module-pill"><span>📚</span> Português</div>
-        <div class="module-pill"><span>🔢</span> Matemática Financeira</div>
-        <div class="module-pill"><span>🧠</span> Raciocínio Lógico</div>
-        <div class="module-pill"><span>🏦</span> Conhecimentos Bancários</div>
-        <div class="module-pill"><span>⚖️</span> Direito Previdenciário</div>
-        <div class="module-pill"><span>🏛️</span> Direito Administrativo</div>
-        <div class="module-pill"><span>🌐</span> Inglês / Idiomas</div>
-        <div class="module-pill"><span>💻</span> Noções de Informática</div>
-        <div class="module-pill"><span>🏠</span> Economia Imobiliária</div>
-        <div class="module-pill"><span>📜</span> Legislação Municipal</div>
-        <div class="module-pill"><span>📰</span> Atualidades Mercado</div>
-        <div class="module-pill"><span>🤝</span> Ética no Serviço Público</div>
-      </div>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <strong>AprovacaoTotal</strong> — Plataforma de estudos com IA generativa para concursos públicos.<br>
-  <span style="font-size:12px;margin-top:8px;display:block">Simulados · Redação · Idiomas · Desempenho</span>
-</footer>
-
+    <!-- SDK do Supabase e lógica -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
 </body>
 </html>
