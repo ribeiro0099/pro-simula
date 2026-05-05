@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -39,4 +40,72 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Educacional Pró</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Banner Principal -->
+        <div class="estudos-banner">
+            <div class="banner-image">
+                <img src="download.jfif" alt="Ilustração de Estudantes">
+            </div>
+            <div class="banner-content">
+                <h2>PORTAL DE ESTUDOS</h2>
+                <p>Pratique para ENCCEJA, BANESE e Concursos com simulados atualizados.</p>
+            </div>
+        </div>
+
+        <!-- Cabeçalho com Filtros -->
+        <header class="main-header">
+            <div class="controles">
+                <select id="select-categoria">
+                    <option value="">Selecione o Exame</option>
+                    <option value="ENCCEJA">ENCCEJA Ensino Médio</option>
+                    <option value="BANESE">Carreira Bancária (BANESE)</option>
+                </select>
+                <select id="select-materia">
+                    <option value="">Selecione o Exame primeiro...</option>
+                </select>
+                <button id="btn-iniciar">Iniciar Prática</button>
+            </div>
+        </header>
+
+        <!-- Placar de Resultados (oculto até conferir) -->
+        <!-- Novo Placar com Barra de Progresso -->
+<div id="placar" class="hidden">
+    <div class="placar-header">
+        <p>Pontuação Atual: <span id="pontos">0.0</span> / 100</p>
+    </div>
+    <div class="barra-progresso">
+        <div id="progresso-fill"></div>
+    </div>
+    <span id="placar-texto"></span>
+</div>
+
+        <!-- Container das Questões -->
+        <main id="questoes-container">
+            <div class="placeholder">Escolha as opções acima para carregar o simulado.</div>
+        </main>
+
+        <!-- Rodapé com Botão de Ação -->
+        <footer class="main-footer">
+            <button id="btn-conferir" class="hidden">✅ Conferir Respostas</button>
+            <button id="btn-reiniciar" class="hidden btn-secondary">🔄 Novo Simulado</button>
+        </footer>
+    </div>
+
+    <!-- Scripts: config primeiro, depois Supabase SDK, depois a lógica -->
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+>>>>>>> ccc9de1 (Ajuste de pontos e barra verde)
 </html>

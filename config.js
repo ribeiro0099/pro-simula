@@ -1,5 +1,7 @@
+
 // config.js
 const CONFIG = {
     SUPABASE_URL: "https://ukpbxtwxkurjyrnuoniy.supabase.co",
     SUPABASE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrcGJ4dHd4a3VyanlybnVvbml5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1OTcyOTQsImV4cCI6MjA5MzE3MzI5NH0.wonPrg8kUbqY0zaTsZ4UAk6K6lEROY20BPh1Fp-HSkA"
-};
+    
+}
