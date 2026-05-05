@@ -1,46 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Questões Pró</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="app">
-        <!-- Banner de Estudos no Topo -->
-        <div class="estudos-banner">
-            <div class="banner-content">
-                <h2>FOCO NOS ESTUDOS</h2>
-                <p>Prepare-se para o TTI e Banco do Brasil com questões atualizadas.</p>
-            </div>
-        </div>
-
-        <header>
-            <h1>Simulador Educacional</h1>
-            <div class="controles">
-                <select id="select-materia">
-                    <option value="">Carregando matérias...</option>
-                </select>
-                <button id="btn-iniciar">Iniciar Prática</button>
-            </div>
-        </header>
-
-        <main id="questoes-container">
-            <div class="placeholder">Selecione uma matéria para começar sua prática.</div>
-        </main>
-
-        <footer>
-            <button id="btn-conferir" class="hidden">Conferir Respostas</button>
-        </footer>
-    </div>
-
-    <!-- SDK do Supabase e lógica -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js"></script>
-</body>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -78,17 +35,16 @@
             </div>
         </header>
 
-        <!-- Placar de Resultados (oculto até conferir) -->
-        <!-- Novo Placar com Barra de Progresso -->
-<div id="placar" class="hidden">
-    <div class="placar-header">
-        <p>Pontuação Atual: <span id="pontos">0.0</span> / 100</p>
-    </div>
-    <div class="barra-progresso">
-        <div id="progresso-fill"></div>
-    </div>
-    <span id="placar-texto"></span>
-</div>
+        <!-- Placar de Resultados -->
+        <div id="placar" class="hidden">
+            <div class="placar-header">
+                <p>Pontuação Atual: <span id="pontos">0.0</span> / 100</p>
+            </div>
+            <div class="barra-progresso">
+                <div id="progresso-fill"></div>
+            </div>
+            <span id="placar-texto"></span>
+        </div>
 
         <!-- Container das Questões -->
         <main id="questoes-container">
@@ -102,10 +58,9 @@
         </footer>
     </div>
 
-    <!-- Scripts: config primeiro, depois Supabase SDK, depois a lógica -->
+    <!-- Scripts -->
     <script src="config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 </body>
-
 </html>
